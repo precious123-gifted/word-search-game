@@ -84,8 +84,8 @@ const dictionaryWords = [
     { key: "JERUSALEM", value: "JERUSALEM" },
     { key: "KATYDID", value: "KATYDID" },
     { key: "LACEBUG", value: "LACEBUG" },
-    { key: "MUDDAUBER", value: "MUDDAUBER" },
-    { key: "NETWINGEDMIDGE", value: "NETWINGEDMIDGE" }
+    { key: "LOVE", value: "LOVE" },
+    { key: "HOME", value: "HOME" }
 ];
 
 
@@ -247,3 +247,18 @@ for (let emptyBox of boxesArray) {
 
  }
 addRandomLettersToEmptyDivs()
+
+
+
+function trackClickedBox(box){
+
+console.log(box.textContent)
+if(box.className === 'box'){
+    alert('box found')
+}
+}
+
+document.addEventListener('click',(box)=>{
+
+trackClickedBox(box.target)
+})
