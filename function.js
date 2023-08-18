@@ -248,13 +248,105 @@ for (let emptyBox of boxesArray) {
  }
 addRandomLettersToEmptyDivs()
 
-
-
+let currentWordToCompare = []
+let currentIndexToCompare = []
 function trackClickedBox(box){
 
-console.log(box.textContent)
+
 if(box.className === 'box'){
-    alert('box found')
+    box.classList.remove('box')
+    box.classList.add('clicked-style')
+    currentWordToCompare.push(box.textContent)
+    currentIndexToCompare.push(box.id)
+    console.log(currentWordToCompare)
+    console.log(currentIndexToCompare)
+    let word = currentWordToCompare.join('')
+    console.log(word)
+
+  
+    let sub = currentIndexToCompare.length>1? currentIndexToCompare[0]-currentIndexToCompare[1]:null
+    console.log('sub',sub)
+    let currentClickingDirection = sub === -1?rows : sub === -15?columns:null
+//i will need to get the index of all the boxes being clicked,if each of the box index subtracted by the other gives you 
+//-1 or -15 then the selection is valid else its invalid so the comparison loop would not run to check for 
+//the word in the dictionary word array
+//write a logic to check if current index length is greater than 1 then check if index 0 and 1 
+//if subracted will gives you -1 or 15 remove index 0 from the array and check if that word exists
+//else if it does not give you -1 or -15 alert (you can not select words from random boxes)
+
+
+let check_currentIndexToCompare_array_and_return_a_warning_message_if_index0_subracted_from_index_one_is_not_equals_to_negative1_or_negative15_else_if_equals_to_it_remove_index0_from_array_and_check_if_the_word_exists_in_dictionaryWordArray
+
+if(currentIndexToCompare.length>1 &&  sub !== -1 && sub !== -15){alert('yeba')}
+
+if (currentClickingDirection === rows) {
+
+  //run check for word
+//check if word exists in found word array
+//if it doesnt exist in found words array only then will you check dictionary words
+//if word exists strike the word and add it to found words array hash tree
+//empty current word array and current index array
+//else if the word doesnt exist remove current index array index 0
+
+
+
+//check if sub is in row or column,if its in row find the row index in rows array likewise for columns
+//set current clicked direction to row or column
+//if the last letter index added is not found in current clicked direction index array
+//send warning message
+currentIndexToCompare.shift()
+console.log('popped',currentIndexToCompare)
+
+
+
+  let currentRow = Math.floor(currentIndexToCompare[0] / rows.length);
+  let currentIndexInRow = currentIndexToCompare[0] % rows.length;
+ console.log(sub)
+  
+
+  console.log('Current Row:', currentRow);
+  console.log('Current Index in Row:', currentIndexInRow);
+
+ console.log(currentClickingDirection)
+  let currentRowArray = rows[currentRow];
+  let currentIndexToCompareValue = parseInt(currentIndexToCompare[0]);
+  
+  let foundInRow = currentRowArray.some(row => parseInt(row.id) === currentIndexToCompareValue);
+
+ 
+
+
+  //check if last index in the array is also in the currentrow array
+
+//   let nextClickVerified = rows[currentRow].find(row => row.id === rows[currentRow][currentIndexInRow].id);
+//   console.log('box id',currentIndexInRow)
+// console.log( 'current id', rows[currentRow][currentIndexInRow].id)
+
+
+// if (nextClickVerified) {
+//   console.log('nextclickverified');
+// } else {
+//   console.log('wahala');
+// }
+
+
+
+} else if (currentClickingDirection === columns) {
+  currentIndexToCompare.shift()
+
+  let currentColumn = currentIndexToCompare[0] % columns;
+  let currentIndexInColumn = Math.floor(currentIndexToCompare[0] / columns.length);
+  console.log('Current Column:', currentIndexToCompare[0] % columns.length);
+  console.log('Current Index in Column:', currentIndexInColumn);
+  console.log(currentClickingDirection)
+}
+
+
+
+
+
+
+
 }
 }
 

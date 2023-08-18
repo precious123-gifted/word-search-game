@@ -1,5 +1,16 @@
 body{
 
+.clicked-style{
+    background-color: antiquewhite;
+    border: 5px solid;
+border-color:green ;
+width: 100%;
+height: 100%;
+display: grid;
+place-content: center;
+}
+
+
 .content{
 
 width: 100vw;
