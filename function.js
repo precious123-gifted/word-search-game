@@ -250,7 +250,11 @@ addRandomLettersToEmptyDivs()
 
 let currentWordToCompare = []
 let currentIndexToCompare = []
-function trackClickedBox(box){
+let currentIndexesToCompare = []
+
+let foundWordsArray = []
+
+ async function trackClickedBox(box){ 
 
 
 if(box.className === 'box'){
@@ -258,13 +262,35 @@ if(box.className === 'box'){
     box.classList.add('clicked-style')
     currentWordToCompare.push(box.textContent)
     currentIndexToCompare.push(box.id)
+    currentIndexesToCompare.push(box.id)
     console.log(currentWordToCompare)
     console.log(currentIndexToCompare)
     let word = currentWordToCompare.join('')
-    console.log(word)
-
+    console.log('word to compare',word)
   
-    let sub = currentIndexToCompare.length>1? currentIndexToCompare[0]-currentIndexToCompare[1]:null
+    let wordFound = await dictionaryWords.find(wordS => wordS.key === word)
+    
+console.log( wordFound? `wordfound status is:,${wordFound}` : null)
+    if(wordFound){alert('found a word'); foundWordsArray.push(wordFound.key);}  
+  console.log('found words',foundWordsArray)
+
+  if(wordFound){currentIndexToCompare =[];currentIndexesToCompare = [];currentWordToCompare = []
+  
+    boxesArray.forEach(box =>{
+  
+    box.style.pointerEvents = 'all'
+  })} 
+
+
+  if(foundWordsArray.length === wordsToFindDivArray.length){alert('game completed')}
+
+
+  wordsToFindDivArray.forEach((wordDiv, index) => {
+   if(wordDiv.textContent === wordFound?.key){ wordDiv.style.color = 'red'  }
+  });
+
+
+    let sub = currentIndexesToCompare.length>1? currentIndexesToCompare[0]-currentIndexesToCompare[1]:null
     console.log('sub',sub)
     let currentClickingDirection = sub === -1?rows : sub === -15?columns:null
 //i will need to get the index of all the boxes being clicked,if each of the box index subtracted by the other gives you 
@@ -277,9 +303,11 @@ if(box.className === 'box'){
 
 let check_currentIndexToCompare_array_and_return_a_warning_message_if_index0_subracted_from_index_one_is_not_equals_to_negative1_or_negative15_else_if_equals_to_it_remove_index0_from_array_and_check_if_the_word_exists_in_dictionaryWordArray
 
-if(currentIndexToCompare.length>1 &&  sub !== -1 && sub !== -15){alert('yeba')}
+if(currentIndexToCompare.length>1 &&  sub !== -1 && sub !== -15){alert('yeba you must click either vertically or horizontally')}
 
 if (currentClickingDirection === rows) {
+
+
 
   //run check for word
 //check if word exists in found word array
@@ -296,7 +324,7 @@ if (currentClickingDirection === rows) {
 //send warning message
 currentIndexToCompare.shift()
 console.log('popped',currentIndexToCompare)
-
+console.log('popped',currentIndexesToCompare)
 
 
   let currentRow = Math.floor(currentIndexToCompare[0] / rows.length);
@@ -304,41 +332,107 @@ console.log('popped',currentIndexToCompare)
  console.log(sub)
   
 
-  console.log('Current Row:', currentRow);
+  console.log('Current Row:',currentClickingDirection[currentRow]);
+  console.log('Current index id:',boxesArray[currentIndexToCompare].id);
+  let currentRowing =  currentClickingDirection[currentRow]
+  console.log('Current Row box:',currentClickingDirection[currentRow][currentIndexInRow]);
+  console.log('Current Row box id:',currentClickingDirection[currentRow][currentIndexInRow].id);
+  let existsInRow = currentRowing.some( box => box.id === boxesArray[currentIndexToCompare].id)
+
+  // alert(boxesArray[currentIndexToCompare].id === currentClickingDirection[currentRow][currentIndexInRow].id ? 'comparison successful' : 'comparison wrong')
+  
+ //check if sub is null
+//  alert(sub === -1?'direction is row':sub)
+
+ console.log(existsInRow)
+  console.log('exist in row status',existsInRow)
   console.log('Current Index in Row:', currentIndexInRow);
 
- console.log(currentClickingDirection)
+ 
   let currentRowArray = rows[currentRow];
   let currentIndexToCompareValue = parseInt(currentIndexToCompare[0]);
+
+  //check if the current index to comapare is foun in the row and alert a message
+  console.log('current row',currentRow)
   
-  let foundInRow = currentRowArray.some(row => parseInt(row.id) === currentIndexToCompareValue);
+  boxesArray.forEach(box =>{
+
+    box.style.pointerEvents = 'none'
+  })
+  currentClickingDirection[currentRow].forEach(box =>{
+
+    box.style.pointerEvents = 'all'
+  })
+
+  if(currentIndexesToCompare[currentIndexesToCompare.length-2]-currentIndexToCompare[0] !== -1){
+
+
+     alert('wahala don they o,you clicked on a different box from your current row')
+  }
+ 
 
  
 
 
-  //check if last index in the array is also in the currentrow array
-
-//   let nextClickVerified = rows[currentRow].find(row => row.id === rows[currentRow][currentIndexInRow].id);
-//   console.log('box id',currentIndexInRow)
-// console.log( 'current id', rows[currentRow][currentIndexInRow].id)
-
-
-// if (nextClickVerified) {
-//   console.log('nextclickverified');
-// } else {
-//   console.log('wahala');
-// }
-
-
 
 } else if (currentClickingDirection === columns) {
-  currentIndexToCompare.shift()
 
-  let currentColumn = currentIndexToCompare[0] % columns;
+  currentIndexToCompare.shift()
+  console.log('popped',currentIndexToCompare)
+  console.log('popped',currentIndexesToCompare)
+  
+  
+ 
+   let currentColumn = currentIndexToCompare[0] % columns.length;
   let currentIndexInColumn = Math.floor(currentIndexToCompare[0] / columns.length);
   console.log('Current Column:', currentIndexToCompare[0] % columns.length);
   console.log('Current Index in Column:', currentIndexInColumn);
-  console.log(currentClickingDirection)
+  console.log('currentclikcing direction',currentClickingDirection)
+  
+    console.log('Current Column:',currentColumn);
+    console.log('Current index id:',boxesArray[currentIndexToCompare].id);
+
+    console.log('currentclikcing direction column',currentClickingDirection[currentColumn])
+    let currentColumning = currentColumn
+    // console.log('Current Row box:',currentClickingDirection[currentColumn][currentIndexInColumn]);
+    // console.log('Current Row box id:',currentClickingDirection[currentColumn][currentIndexInColumn].id);
+    let existsInColumn = currentClickingDirection[currentColumn].some( box => box.id === boxesArray[currentIndexToCompare].id)
+   
+  //   alert(boxesArray[currentIndexToCompare].id === currentClickingDirection[currentColumn][currentIndexInColumn].id ? 'comparison successful' : 'comparison wrong')
+    
+  //  alert(sub === -15?'direction is col':sub)
+  
+   console.log(existsInColumn)
+    console.log('exist in col status',existsInColumn)
+    console.log('Current Index in Col:', currentIndexInColumn);
+  
+   
+    let currentRowArray = rows[currentColumn];
+    let currentIndexToCompareValue = parseInt(currentIndexToCompare[0]);
+  
+    console.log('current Col',currentColumn)
+    
+    boxesArray.forEach(box =>{
+
+      box.style.pointerEvents = 'none'
+    })
+    currentClickingDirection[currentColumn].forEach(box =>{
+
+      box.style.pointerEvents = 'all'
+    })
+  
+    if(currentIndexesToCompare[currentIndexesToCompare.length-2]-currentIndexToCompare[0] !== -15){
+  
+  
+       alert('wahala don they o,you clicked on a different box from your current column')
+    }
+   
+
+  
+
+
+
+
 }
 
 
