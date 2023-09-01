@@ -275,11 +275,17 @@ console.log( wordFound? `wordfound status is:,${wordFound}` : null)
   console.log('found words',foundWordsArray)
 
   if(wordFound){currentIndexToCompare =[];currentIndexesToCompare = [];currentWordToCompare = []
+ 
+    setTimeout(()=>{
+      boxesArray.forEach(box =>{
+    
+        box.style.pointerEvents = 'all'
+      }) 
+    },2000)
+    
   
-    boxesArray.forEach(box =>{
-  
-    box.style.pointerEvents = 'all'
-  })} 
+   
+  } 
 
 
   if(foundWordsArray.length === wordsToFindDivArray.length){alert('game completed')}
@@ -302,8 +308,42 @@ console.log( wordFound? `wordfound status is:,${wordFound}` : null)
 
 
 let check_currentIndexToCompare_array_and_return_a_warning_message_if_index0_subracted_from_index_one_is_not_equals_to_negative1_or_negative15_else_if_equals_to_it_remove_index0_from_array_and_check_if_the_word_exists_in_dictionaryWordArray
+// if(currentIndexToCompare.length>1 &&  sub === null ){alert('yeba you must click either vertically or horizontally')}
+if(currentIndexToCompare.length>1 &&  sub !== -1 && sub !== -15 ){alert('yeba you must click either vertically or horizontally')
 
-if(currentIndexToCompare.length>1 &&  sub !== -1 && sub !== -15){alert('yeba you must click either vertically or horizontally')}
+const logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle =()=>{
+  for (let index = 0; index < currentIndexesToCompare.length; index++) {
+  
+ let boxesToRemoveStyle = boxesArray.find( box => box.id === currentIndexesToCompare[index])
+ 
+ 
+   boxesToRemoveStyle?.classList.remove('clicked-style')
+   boxesToRemoveStyle?.classList.add('box')
+ 
+  
+ 
+ 
+ 
+ }  
+ 
+ return Promise.resolve()
+ }
+
+ logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle()
+
+ logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle().then(()=>{
+   currentIndexesToCompare = [];currentIndexToCompare =[];currentWordToCompare = [];
+   setTimeout(() => {
+     boxesArray.forEach(box =>{
+   
+     box.style.pointerEvents = 'all'
+   }) 
+   }, 1000);
+  
+ })
+
+
+}
 
 if (currentClickingDirection === rows) {
 
@@ -327,19 +367,19 @@ console.log('popped',currentIndexToCompare)
 console.log('popped',currentIndexesToCompare)
 
 
-  let currentRow = Math.floor(currentIndexToCompare[0] / rows.length);
+  let currentRowIndex = Math.floor(currentIndexToCompare[0] / rows.length);
   let currentIndexInRow = currentIndexToCompare[0] % rows.length;
  console.log(sub)
   
 
-  console.log('Current Row:',currentClickingDirection[currentRow]);
+  console.log('Current Row:',currentClickingDirection[currentRowIndex]);
   console.log('Current index id:',boxesArray[currentIndexToCompare].id);
-  let currentRowing =  currentClickingDirection[currentRow]
-  console.log('Current Row box:',currentClickingDirection[currentRow][currentIndexInRow]);
-  console.log('Current Row box id:',currentClickingDirection[currentRow][currentIndexInRow].id);
-  let existsInRow = currentRowing.some( box => box.id === boxesArray[currentIndexToCompare].id)
+  let currentRowIndexing =  currentClickingDirection[currentRowIndex]
+  console.log('Current Row box:',currentClickingDirection[currentRowIndex][currentIndexInRow]);
+  console.log('Current Row box id:',currentClickingDirection[currentRowIndex][currentIndexInRow].id);
+  let existsInRow = currentRowIndexing.some( box => box.id === boxesArray[currentIndexToCompare].id)
 
-  // alert(boxesArray[currentIndexToCompare].id === currentClickingDirection[currentRow][currentIndexInRow].id ? 'comparison successful' : 'comparison wrong')
+  // alert(boxesArray[currentIndexToCompare].id === currentClickingDirection[currentRowIndex][currentIndexInRow].id ? 'comparison successful' : 'comparison wrong')
   
  //check if sub is null
 //  alert(sub === -1?'direction is row':sub)
@@ -348,18 +388,87 @@ console.log('popped',currentIndexesToCompare)
   console.log('exist in row status',existsInRow)
   console.log('Current Index in Row:', currentIndexInRow);
 
+
+
+//write a logic to remove the clicked style from boxes that do not form a word
+
+
+let timeOutToCheckIfAWordExists = setTimeout(()=>{
+
+//check if the current indexes do not form a word
+if(!wordFound){
+
+
+
+
+  //reomve the clicked style from the boxes which their indexes has been saved in the current clicking indexes
+console.log('current row divs',currentClickingDirection[currentRowIndex])
+
+console.log('current indexes to compare:',currentIndexesToCompare)
+
+const logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle =()=>{
+ for (let index = 0; index < currentIndexesToCompare.length; index++) {
  
-  let currentRowArray = rows[currentRow];
+let boxesToRemoveStyle = currentClickingDirection[currentRowIndex].find( box => box.id === currentIndexesToCompare[index])
+
+
+  boxesToRemoveStyle?.classList.remove('clicked-style')
+  boxesToRemoveStyle?.classList.add('box')
+
+ 
+
+
+
+}  
+
+return Promise.resolve()
+}
+logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle()
+logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle().then(()=>{
+  currentIndexesToCompare = [];currentIndexToCompare =[];currentWordToCompare = [];
+  setTimeout(() => {
+    boxesArray.forEach(box =>{
+  
+    box.style.pointerEvents = 'all'
+  }) 
+  }, 1000);
+ 
+})
+
+}
+
+  
+  },4000)
+
+ 
+
+  // function processArray() {
+  //   for (let i = 0; i < myArray.length; i++) {
+  //     console.log(myArray[i]);
+  //   }
+  
+  //   return Promise.resolve(); // Resolving the promise immediately
+  // }
+  
+  // processArray().then(() => {
+  //   console.log('Array update after logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle');
+  //   myArray[0] = 100; // Change array value
+  //   console.log('Updated array:', myArray);
+  // });
+
+
+
+  let currentRowIndexArray = rows[currentRowIndex];
   let currentIndexToCompareValue = parseInt(currentIndexToCompare[0]);
 
   //check if the current index to comapare is foun in the row and alert a message
-  console.log('current row',currentRow)
+  console.log('current row',currentRowIndex)
   
   boxesArray.forEach(box =>{
 
     box.style.pointerEvents = 'none'
   })
-  currentClickingDirection[currentRow].forEach(box =>{
+  currentClickingDirection[currentRowIndex].forEach(box =>{
 
     box.style.pointerEvents = 'all'
   })
@@ -383,22 +492,72 @@ console.log('popped',currentIndexesToCompare)
   
   
  
-   let currentColumn = currentIndexToCompare[0] % columns.length;
+   let currentColumnIndex = currentIndexToCompare[0] % columns.length;
   let currentIndexInColumn = Math.floor(currentIndexToCompare[0] / columns.length);
   console.log('Current Column:', currentIndexToCompare[0] % columns.length);
   console.log('Current Index in Column:', currentIndexInColumn);
   console.log('currentclikcing direction',currentClickingDirection)
   
-    console.log('Current Column:',currentColumn);
+    console.log('Current Column:',currentColumnIndex);
     console.log('Current index id:',boxesArray[currentIndexToCompare].id);
 
-    console.log('currentclikcing direction column',currentClickingDirection[currentColumn])
-    let currentColumning = currentColumn
-    // console.log('Current Row box:',currentClickingDirection[currentColumn][currentIndexInColumn]);
-    // console.log('Current Row box id:',currentClickingDirection[currentColumn][currentIndexInColumn].id);
-    let existsInColumn = currentClickingDirection[currentColumn].some( box => box.id === boxesArray[currentIndexToCompare].id)
+    console.log('currentclikcing direction column',currentClickingDirection[currentColumnIndex])
+
+
+    let timeOutToCheckIfAWordExists = setTimeout(()=>{
+
+      //check if the current indexes do not form a word
+      if(!wordFound){
+      
+      
+      
+      
+        //reomve the clicked style from the boxes which their indexes has been saved in the current clicking indexes
+      console.log('current column divs',currentClickingDirection[currentColumnIndex])
+      
+      console.log('current indexes to compare:',currentIndexesToCompare)
+      
+      const logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle =()=>{
+       for (let index = 0; index < currentIndexesToCompare.length; index++) {
+       
+      let boxesToRemoveStyle = currentClickingDirection[currentColumnIndex].find( box => box.id === currentIndexesToCompare[index])
+      
+      
+        boxesToRemoveStyle?.classList.remove('clicked-style')
+        boxesToRemoveStyle?.classList.add('box')
+      
+       
+      
+       
+      
+      }  
+      
+      return Promise.resolve()
+      }
+      logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle()
+      logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle().then(()=>{
+        currentIndexesToCompare = [];currentIndexToCompare =[];currentWordToCompare = [] ;
+        setTimeout(() => {
+          boxesArray.forEach(box =>{
+        
+          box.style.pointerEvents = 'all'
+        }) 
+        }, 1000);
+      })
+      
+      }
+      
+        
+        },4000)
+      
+
+
+    let currentColumnIndexing = currentColumnIndex
+    // console.log('Current Row box:',currentClickingDirection[currentColumnIndex][currentIndexInColumn]);
+    // console.log('Current Row box id:',currentClickingDirection[currentColumnIndex][currentIndexInColumn].id);
+    let existsInColumn = currentClickingDirection[currentColumnIndex].some( box => box.id === boxesArray[currentIndexToCompare].id)
    
-  //   alert(boxesArray[currentIndexToCompare].id === currentClickingDirection[currentColumn][currentIndexInColumn].id ? 'comparison successful' : 'comparison wrong')
+  //   alert(boxesArray[currentIndexToCompare].id === currentClickingDirection[currentColumnIndex][currentIndexInColumn].id ? 'comparison successful' : 'comparison wrong')
     
   //  alert(sub === -15?'direction is col':sub)
   
@@ -407,16 +566,16 @@ console.log('popped',currentIndexesToCompare)
     console.log('Current Index in Col:', currentIndexInColumn);
   
    
-    let currentRowArray = rows[currentColumn];
+    let currentRowIndexArray = rows[currentColumnIndex];
     let currentIndexToCompareValue = parseInt(currentIndexToCompare[0]);
   
-    console.log('current Col',currentColumn)
+    console.log('current Col',currentColumnIndex)
     
     boxesArray.forEach(box =>{
 
       box.style.pointerEvents = 'none'
     })
-    currentClickingDirection[currentColumn].forEach(box =>{
+    currentClickingDirection[currentColumnIndex].forEach(box =>{
 
       box.style.pointerEvents = 'all'
     })
@@ -434,6 +593,7 @@ console.log('popped',currentIndexesToCompare)
 
 
 }
+
 
 
 
