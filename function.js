@@ -10,78 +10,13 @@ const wordsToFindDivArray = Array.from(wordsToFindDiv)
 
 const dictionaryWords = [
     { key: "LETUS", value: "LETUS" },
+    { key: "JERUSALEM", value: "JERUSALEM" },
     { key: "SNAKE", value: "SNAKE" },
     { key: "BLUE", value: "BLUE" },
     { key: "VALLEY", value: "VALLEY" },
     { key: "SHADOW", value: "SHADOW" },
     { key: "DOCTOR", value: "DOCTOR" },
     { key: "MIGRAINE", value: "MIGRAINE" },
-    // { key: "HYPERTENSION", value: "HYPERTENSION" },
-    // { key: "DIABETES", value: "DIABETES" },
-    // { key: "ANEMIA", value: "ANEMIA" },
-    // { key: "ARTHRITIS", value: "ARTHRITIS" },
-    // { key: "PNEUMONIA", value: "PNEUMONIA" },
-    // { key: "ABSTRACT", value: "ABSTRACT" },
-    // { key: "REALITY", value: "REALITY" },
-    // { key: "REALISM", value: "REALISM" },
-    // { key: "WATERMELON", value: "WATERMELON" },
-    // { key: "PINEAPPLE", value: "PINEAPPLE" },
-    // { key: "MANGO", value: "MANGO" },
-    // { key: "CHERRY", value: "CHERRY" },
-    // { key: "KIWI", value: "KIWI" },
-    // { key: "APPLE", value: "APPLE" },
-    // { key: "BANANA", value: "BANANA" },
-    // { key: "ORANGE", value: "ORANGE" },
-    // { key: "BUTTERFLY", value: "BUTTERFLY" },
-    // { key: "ANT", value: "ANT" },
-    // { key: "BEE", value: "BEE" },
-    // { key: "MOSQUITO", value: "MOSQUITO" },
-    // { key: "SPIDER", value: "SPIDER" },
-    // { key: "FLY", value: "FLY" },
-    // { key: "MOTH", value: "MOTH" },
-    // { key: "LADYBUG", value: "LADYBUG" },
-    // { key: "CRICKET", value: "CRICKET" },
-    // { key: "GRASSHOPPER", value: "GRASSHOPPER" },
-    // { key: "COCKROACH", value: "COCKROACH" },
-    // { key: "MANTIS", value: "MANTIS" },
-    // { key: "BEETLE", value: "BEETLE" },
-    // { key: "CATERPILLAR", value: "CATERPILLAR" },
-    // { key: "DRAGONFLY", value: "DRAGONFLY" },
-    // { key: "FIREANT", value: "FIREANT" },
-    // { key: "CRANEFLY", value: "CRANEFLY" },
-    // { key: "MOSQUITOHAWK", value: "MOSQUITOHAWK" },
-    // { key: "TARANTULA", value: "TARANTULA" },
-    // { key: "WASP", value: "WASP" },
-    // { key: "CENTIPEDE", value: "CENTIPEDE" },
-    // { key: "CICADA", value: "CICADA" },
-    // { key: "EARWIG", value: "EARWIG" },
-    // { key: "FLEA", value: "FLEA" },
-    // { key: "GLOWWORM", value: "GLOWWORM" },
-    // { key: "HONEYBEE", value: "HONEYBEE" },
-    // { key: "LICE", value: "LICE" },
-    // { key: "MOSQUITOFISH", value: "MOSQUITOFISH" },
-    // { key: "NIGHTCRAWLER", value: "NIGHTCRAWLER" },
-    // { key: "PILLBUG", value: "PILLBUG" },
-    // { key: "QUEENBEE", value: "QUEENBEE" },
-    // { key: "ROVEBEETLE", value: "ROVEBEETLE" },
-    // { key: "SCORPION", value: "SCORPION" },
-    // { key: "TERMITE", value: "TERMITE" },
-    // { key: "UMBRELLAWASP", value: "UMBRELLAWASP" },
-    // { key: "VELVETANT", value: "VELVETANT" },
-    // { key: "WEEVIL", value: "WEEVIL" },
-    // { key: "XANTHORRHIZA", value: "XANTHORRHIZA" },
-    // { key: "YELLOWJACKET", value: "YELLOWJACKET" },
-    // { key: "ZEBRALONGWING", value: "ZEBRALONGWING" },
-    // { key: "APHID", value: "APHID" },
-    // { key: "BEDBUG", value: "BEDBUG" },
-    // { key: "CLOVERMITE", value: "CLOVERMITE" },
-    // { key: "DRAGONANT", value: "DRAGONANT" },
-    // { key: "EARTHWORM", value: "EARTHWORM" },
-    // { key: "FRUITFLY", value: "FRUITFLY" },
-    // { key: "GNAT", value: "GNAT" },
-    // { key: "HORNET", value: "HORNET" },
-    // { key: "ICHTHYURUS", value: "ICHTHYURUS" },
-    { key: "JERUSALEM", value: "JERUSALEM" },
     { key: "KATYDID", value: "KATYDID" },
     { key: "LACEBUG", value: "LACEBUG" },
     { key: "LOVE", value: "LOVE" },
@@ -89,95 +24,49 @@ const dictionaryWords = [
 ];
 
 
+const numberOfColumns = 15; 
+const rowsArray = [];
+const columnsArray = Array.from({ length: numberOfColumns }, () => []);
 
-
-// addLettersToDiv();
-
-
-const numColumns = 15; 
-const rows = [];
-const columns = Array.from({ length: numColumns }, () => []);
-
-let add_boxes_to_column_and_row_array = boxesArray.forEach((box, index) => {
-    const rowIndex = Math.floor(index / numColumns);
-    rows[rowIndex] = rows[rowIndex] || [];
-    rows[rowIndex].push(box);
+let add_boxes_to_columns_and_rows_array = boxesArray.forEach((box, index) => {
+    const rowIndex = Math.floor(index / numberOfColumns);
+    rowsArray[rowIndex] = rowsArray[rowIndex] || [];
+    rowsArray[rowIndex].push(box);
     
-    const arrayBoxIndex = index % numColumns;
-    columns[arrayBoxIndex].push(box);
+    const arrayBoxIndex = index % numberOfColumns;
+    columnsArray[arrayBoxIndex].push(box);
 });
  
 
 
-
-
-// function addLettersToDiv() {
-//     let boxIndex = 0;
-//     let wordIndex = 0;
-//     let letterIndex = 0;
-//     let arrayBoxIndex = Math.floor(Math.random() * 15);
-//     let directionBoxIndex = 0;
-  
-//     let wordsArr = dictionaryWords.map(word => word.value);
-//     let letterArr = wordsArr.map(word => [...word]);
-  
-//     let display_the_words_that_are_meant_to_be_found = wordsToFindDivArray.forEach((wordDiv, index) => {
-//       wordDiv.textContent = wordsArr[index];
-//     });
-  
-//     letterArr.forEach((word, index) => {
-//       // Find a column with enough space for the word
-//       while (directionBoxIndex + word.length > columns[arrayBoxIndex].length) {
-//         arrayBoxIndex = (arrayBoxIndex + 1) % 15; // Move to the next column
-//         directionBoxIndex = 0; // Reset directionBoxIndex
-//       }
-  
-//       let currentDirection = columns[arrayBoxIndex];
-  
-//       for (let i = 0; i < word.length; i++) {
-//         if (directionBoxIndex >= currentDirection.length) {
-//           // Move to the next column
-//           arrayBoxIndex = (arrayBoxIndex + 1) % 15;
-//           currentDirection = columns[arrayBoxIndex];
-//           directionBoxIndex = 0; // Reset directionBoxIndex
-//         }
-  
-//         currentDirection[directionBoxIndex].textContent = word[i];
-//         directionBoxIndex += 1;
-//       }
-//     });
-//   }
-  
-
-
-
-
-function addDictionaryWordLettersToDiv() {
+function addDictionaryWordsLettersToBox() {
     const wordsArr = dictionaryWords.map(word => word.value);
-    const letterArr = wordsArr.map(word => [...word]);
-    const boxHolders = [columns, rows];
-    let currentBoxHolderIndex = 0; // Start with columns
-    let currentBoxHolder = boxHolders[currentBoxHolderIndex];
-    wordsToFindDivArray.forEach((wordDiv, index) => {
+    const wordsLetterArr = wordsArr.map(word => [...word]);
+    const columnsArray_And_RowsArray_Selector = [columnsArray, rowsArray];
+    let columnsArray_And_RowsArray_Selector_Index = 0;
+    let currentBoxHolder = columnsArray_And_RowsArray_Selector[columnsArray_And_RowsArray_Selector_Index];
+
+
+   let list_words_to_find_in_the_game = wordsToFindDivArray.forEach((wordDiv, index) => {
       wordDiv.textContent = wordsArr[index];
     });
   
-    let unplacedWords = [...letterArr]; // Create a copy of letterArr
+    let unplacedWordsLetters = [...wordsLetterArr];
   
-    while (unplacedWords.length > 0) { // Continue until all words are placed
-      const word = unplacedWords.pop(); // Get the last word from unplacedWords
-      let wordIndex = 0;
+    while (unplacedWordsLetters.length > 0) { 
+      const aWordLettersArray = unplacedWordsLetters.pop(); 
+      let aWordLettersArrayLetterIndex = 0;
       let placed = false;
-      let attempts = 0; // Add a counter for attempts
+      let attempts = 0; 
   
-      while (!placed && attempts < 100) { // Limit the attempts
+      while (!placed && attempts < 100) { 
         let boxIndex = Math.floor(Math.random() * 15);
         let currentDirection = currentBoxHolder[boxIndex];
   
-        if (boxIndex + word.length <= currentDirection.length) {
+        if (boxIndex + aWordLettersArray.length <= currentDirection.length) {
           let intersect = false;
   
-          for (let i = boxIndex; i < boxIndex + word.length; i++) {
+          for (let i = boxIndex; i < boxIndex + aWordLettersArray.length; i++) {
             if (currentDirection[i].textContent !== '') {
               intersect = true;
               break;
@@ -185,17 +74,17 @@ function addDictionaryWordLettersToDiv() {
           }
   
           if (!intersect) {
-            for (let i = boxIndex; i < boxIndex + word.length; i++) {
-              currentDirection[i].textContent = word[wordIndex];
-              wordIndex += 1;
+            for (let i = boxIndex; i < boxIndex + aWordLettersArray.length; i++) {
+              currentDirection[i].textContent = aWordLettersArray[aWordLettersArrayLetterIndex];
+              aWordLettersArrayLetterIndex += 1;
             }
             placed = true;
           }
         }
   
         if (!placed) {
-          currentBoxHolderIndex = (currentBoxHolderIndex + 1) % 2; // Toggle between rows and columns
-          currentBoxHolder = boxHolders[currentBoxHolderIndex];
+          columnsArray_And_RowsArray_Selector_Index = (columnsArray_And_RowsArray_Selector_Index + 1) % 2;
+          currentBoxHolder = columnsArray_And_RowsArray_Selector[columnsArray_And_RowsArray_Selector_Index];
           let emptyBoxFound = false;
   
           for (let i = 0; i < currentBoxHolder.length; i++) {
@@ -204,9 +93,9 @@ function addDictionaryWordLettersToDiv() {
             }
   
             let direction = currentBoxHolder[i];
-            if (word.length <= direction.length && !direction.some(box => box.textContent !== '')) {
-              for (let j = 0; j < word.length; j++) {
-                direction[j].textContent = word[j];
+            if (aWordLettersArray.length <= direction.length && !direction.some(box => box.textContent !== '')) {
+              for (let j = 0; j < aWordLettersArray.length; j++) {
+                direction[j].textContent = aWordLettersArray[j];
               }
               placed = true;
               emptyBoxFound = true;
@@ -214,29 +103,25 @@ function addDictionaryWordLettersToDiv() {
           }
         }
   
-        attempts += 1; // Increment attempts
+        attempts += 1;
       }
     }
   }
   
-
- addDictionaryWordLettersToDiv()
-
-
-
+ addDictionaryWordsLettersToBox()
 
  function addRandomLettersToEmptyDivs(){
     let wordsArr = dictionaryWords.map(word => word.value);
     let allLettersArray = [];
 
-    // Iterate through each word in wordsArr
+    
     wordsArr.forEach(word => {
-      // Iterate through each letter in the word
+      
       for (let i = 0; i < word.length; i++) {
-        allLettersArray.push(word[i]); // Add the letter to the allLettersArray
+        allLettersArray.push(word[i]);
       }
     });
-console.log(allLettersArray)
+
 
 for (let emptyBox of boxesArray) {
     if (emptyBox.textContent === '') {
@@ -248,363 +133,170 @@ for (let emptyBox of boxesArray) {
  }
 addRandomLettersToEmptyDivs()
 
-let currentWordToCompare = []
-let currentIndexToCompare = []
-let currentIndexesToCompare = []
 
+
+let currentWordToCompareArray = []
+let currentIndexToCompare = []
+let currentIndexesToCompareArray = []
 let foundWordsArray = []
 
- async function trackClickedBox(box){ 
+function trackClickedBox(box){ 
 
 
 if(box.className === 'box'){
     box.classList.remove('box')
     box.classList.add('clicked-style')
-    currentWordToCompare.push(box.textContent)
+    currentWordToCompareArray.push(box.textContent)
     currentIndexToCompare.push(box.id)
-    currentIndexesToCompare.push(box.id)
-    console.log(currentWordToCompare)
-    console.log(currentIndexToCompare)
-    let word = currentWordToCompare.join('')
-    console.log('word to compare',word)
+    currentIndexesToCompareArray.push(box.id)
   
-    let wordFound = await dictionaryWords.find(wordS => wordS.key === word)
-    
-console.log( wordFound? `wordfound status is:,${wordFound}` : null)
-    if(wordFound){alert('found a word'); foundWordsArray.push(wordFound.key);}  
-  console.log('found words',foundWordsArray)
-
-  if(wordFound){currentIndexToCompare =[];currentIndexesToCompare = [];currentWordToCompare = []
- 
-    setTimeout(()=>{
-      boxesArray.forEach(box =>{
-    
-        box.style.pointerEvents = 'all'
-      }) 
-    },2000)
-    
-  
+    let word = currentWordToCompareArray.join('')
    
+  
+    let wordFound = dictionaryWords.find(Word => Word.key === word)
+    
+    if(wordFound){alert('found a word'); foundWordsArray.push(wordFound.key);}  
+
+  if(wordFound){currentIndexToCompare =[];currentIndexesToCompareArray = [];currentWordToCompareArray = [];
+ 
+  let allow_pointer_events_for_boxes = setTimeout(()=>{
+      boxesArray.forEach(box =>{
+     box.style.pointerEvents = 'all'
+      }) 
+    },2000) 
   } 
 
+ if(foundWordsArray.length === wordsToFindDivArray.length){alert('game completed')}
 
-  if(foundWordsArray.length === wordsToFindDivArray.length){alert('game completed')}
-
-
-  wordsToFindDivArray.forEach((wordDiv, index) => {
+  let change_the_text_color_of_found_words = wordsToFindDivArray.forEach((wordDiv, index) => {
    if(wordDiv.textContent === wordFound?.key){ wordDiv.style.color = 'red'  }
   });
 
-
-    let sub = currentIndexesToCompare.length>1? currentIndexesToCompare[0]-currentIndexesToCompare[1]:null
-    console.log('sub',sub)
-    let currentClickingDirection = sub === -1?rows : sub === -15?columns:null
-//i will need to get the index of all the boxes being clicked,if each of the box index subtracted by the other gives you 
-//-1 or -15 then the selection is valid else its invalid so the comparison loop would not run to check for 
-//the word in the dictionary word array
-//write a logic to check if current index length is greater than 1 then check if index 0 and 1 
-//if subracted will gives you -1 or 15 remove index 0 from the array and check if that word exists
-//else if it does not give you -1 or -15 alert (you can not select words from random boxes)
+    let subtraction_of_current_index_to_compare_and_previous_index_to_compare = currentIndexesToCompareArray.length>1? currentIndexesToCompareArray[0]-currentIndexesToCompareArray[1]:null
+    let currentClickingDirection = subtraction_of_current_index_to_compare_and_previous_index_to_compare === -1?rowsArray : subtraction_of_current_index_to_compare_and_previous_index_to_compare === -15?columnsArray:null
 
 
-let check_currentIndexToCompare_array_and_return_a_warning_message_if_index0_subracted_from_index_one_is_not_equals_to_negative1_or_negative15_else_if_equals_to_it_remove_index0_from_array_and_check_if_the_word_exists_in_dictionaryWordArray
-// if(currentIndexToCompare.length>1 &&  sub === null ){alert('yeba you must click either vertically or horizontally')}
-if(currentIndexToCompare.length>1 &&  sub !== -1 && sub !== -15 ){alert('yeba you must click either vertically or horizontally')
+if(currentIndexToCompare.length>1 &&  subtraction_of_current_index_to_compare_and_previous_index_to_compare !== -1 && subtraction_of_current_index_to_compare_and_previous_index_to_compare !== -15 ){alert('yeba you must click either vertically or horizontally')
 
-const logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle =()=>{
-  for (let index = 0; index < currentIndexesToCompare.length; index++) {
+
+const logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle =()=>{
+  for (let index = 0; index < currentIndexesToCompareArray.length; index++) {
   
  let boxesToRemoveStyle = boxesArray.find( box => box.id === currentIndexesToCompare[index])
- 
- 
    boxesToRemoveStyle?.classList.remove('clicked-style')
-   boxesToRemoveStyle?.classList.add('box')
- 
-  
- 
- 
- 
+   boxesToRemoveStyle?.classList.add('box') 
  }  
- 
  return Promise.resolve()
  }
-
- logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle()
-
- logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle().then(()=>{
-   currentIndexesToCompare = [];currentIndexToCompare =[];currentWordToCompare = [];
-   setTimeout(() => {
+ logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle()
+ logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle().then(()=>{
+   currentIndexesToCompareArray = [];currentIndexToCompare =[];currentWordToCompareArray = [];
+   let allow_pointer_events_for_boxes = setTimeout(() => {
      boxesArray.forEach(box =>{
-   
      box.style.pointerEvents = 'all'
    }) 
    }, 1000);
-  
  })
-
-
 }
 
-if (currentClickingDirection === rows) {
+if (currentClickingDirection === rowsArray) {
 
-
-
-  //run check for word
-//check if word exists in found word array
-//if it doesnt exist in found words array only then will you check dictionary words
-//if word exists strike the word and add it to found words array hash tree
-//empty current word array and current index array
-//else if the word doesnt exist remove current index array index 0
-
-
-
-//check if sub is in row or column,if its in row find the row index in rows array likewise for columns
-//set current clicked direction to row or column
-//if the last letter index added is not found in current clicked direction index array
-//send warning message
 currentIndexToCompare.shift()
-console.log('popped',currentIndexToCompare)
-console.log('popped',currentIndexesToCompare)
 
+  let currentRowIndex = Math.floor(currentIndexToCompare[0] / rowsArray.length);
+  let currentIndexInRow = currentIndexToCompare[0] % rowsArray.length;  
 
-  let currentRowIndex = Math.floor(currentIndexToCompare[0] / rows.length);
-  let currentIndexInRow = currentIndexToCompare[0] % rows.length;
- console.log(sub)
+  let currentClickingRow =  currentClickingDirection[currentRowIndex]
   
-
-  console.log('Current Row:',currentClickingDirection[currentRowIndex]);
-  console.log('Current index id:',boxesArray[currentIndexToCompare].id);
-  let currentRowIndexing =  currentClickingDirection[currentRowIndex]
-  console.log('Current Row box:',currentClickingDirection[currentRowIndex][currentIndexInRow]);
-  console.log('Current Row box id:',currentClickingDirection[currentRowIndex][currentIndexInRow].id);
-  let existsInRow = currentRowIndexing.some( box => box.id === boxesArray[currentIndexToCompare].id)
-
-  // alert(boxesArray[currentIndexToCompare].id === currentClickingDirection[currentRowIndex][currentIndexInRow].id ? 'comparison successful' : 'comparison wrong')
-  
- //check if sub is null
-//  alert(sub === -1?'direction is row':sub)
-
- console.log(existsInRow)
-  console.log('exist in row status',existsInRow)
-  console.log('Current Index in Row:', currentIndexInRow);
-
-
-
-//write a logic to remove the clicked style from boxes that do not form a word
-
+  let existsInRow = currentClickingRow.some( box => box.id === boxesArray[currentIndexToCompare].id)
 
 let timeOutToCheckIfAWordExists = setTimeout(()=>{
 
-//check if the current indexes do not form a word
 if(!wordFound){
 
-
-
-
-  //reomve the clicked style from the boxes which their indexes has been saved in the current clicking indexes
-console.log('current row divs',currentClickingDirection[currentRowIndex])
-
-console.log('current indexes to compare:',currentIndexesToCompare)
-
-const logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle =()=>{
- for (let index = 0; index < currentIndexesToCompare.length; index++) {
+const logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle =()=>{
+ for (let index = 0; index < currentIndexesToCompareArray.length; index++) {
  
-let boxesToRemoveStyle = currentClickingDirection[currentRowIndex].find( box => box.id === currentIndexesToCompare[index])
-
-
+let boxesToRemoveStyle = currentClickingDirection[currentRowIndex].find( box => box.id === currentIndexesToCompareArray[index])
   boxesToRemoveStyle?.classList.remove('clicked-style')
   boxesToRemoveStyle?.classList.add('box')
 
- 
-
-
-
 }  
-
 return Promise.resolve()
 }
-logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle()
-logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle().then(()=>{
-  currentIndexesToCompare = [];currentIndexToCompare =[];currentWordToCompare = [];
-  setTimeout(() => {
+logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle()
+logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle().then(()=>{
+  currentIndexesToCompareArray = [];currentIndexToCompare =[];currentWordToCompareArray = [];
+  let allow_pointer_events_for_boxes = setTimeout(() => {
     boxesArray.forEach(box =>{
-  
     box.style.pointerEvents = 'all'
   }) 
   }, 1000);
- 
 })
-
 }
+  },10000)
 
   
-  },4000)
-
- 
-
-  // function processArray() {
-  //   for (let i = 0; i < myArray.length; i++) {
-  //     console.log(myArray[i]);
-  //   }
-  
-  //   return Promise.resolve(); // Resolving the promise immediately
-  // }
-  
-  // processArray().then(() => {
-  //   console.log('Array update after logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle');
-  //   myArray[0] = 100; // Change array value
-  //   console.log('Updated array:', myArray);
-  // });
-
-
-
-  let currentRowIndexArray = rows[currentRowIndex];
-  let currentIndexToCompareValue = parseInt(currentIndexToCompare[0]);
-
-  //check if the current index to comapare is foun in the row and alert a message
-  console.log('current row',currentRowIndex)
-  
-  boxesArray.forEach(box =>{
-
+ let dissallow_pointer_events_for_boxes = boxesArray.forEach(box =>{
     box.style.pointerEvents = 'none'
   })
-  currentClickingDirection[currentRowIndex].forEach(box =>{
-
+ let allow_pointer_events_for_boxes_in_current_clicking_direction = currentClickingDirection[currentRowIndex].forEach(box =>{
     box.style.pointerEvents = 'all'
   })
 
-  if(currentIndexesToCompare[currentIndexesToCompare.length-2]-currentIndexToCompare[0] !== -1){
-
-
+  if(currentIndexesToCompareArray[currentIndexesToCompareArray.length-2]-currentIndexToCompare[0] !== -1){
      alert('wahala don they o,you clicked on a different box from your current row')
   }
  
+} 
 
- 
-
-
-
-} else if (currentClickingDirection === columns) {
+else if (currentClickingDirection === columnsArray) {
 
   currentIndexToCompare.shift()
-  console.log('popped',currentIndexToCompare)
-  console.log('popped',currentIndexesToCompare)
-  
-  
- 
-   let currentColumnIndex = currentIndexToCompare[0] % columns.length;
-  let currentIndexInColumn = Math.floor(currentIndexToCompare[0] / columns.length);
-  console.log('Current Column:', currentIndexToCompare[0] % columns.length);
-  console.log('Current Index in Column:', currentIndexInColumn);
-  console.log('currentclikcing direction',currentClickingDirection)
-  
-    console.log('Current Column:',currentColumnIndex);
-    console.log('Current index id:',boxesArray[currentIndexToCompare].id);
 
-    console.log('currentclikcing direction column',currentClickingDirection[currentColumnIndex])
-
+  let currentColumnIndex = currentIndexToCompare[0] % columnsArray.length;
+  let currentIndexInColumn = Math.floor(currentIndexToCompare[0] / columnsArray.length);
 
     let timeOutToCheckIfAWordExists = setTimeout(()=>{
 
-      //check if the current indexes do not form a word
-      if(!wordFound){
-      
-      
-      
-      
-        //reomve the clicked style from the boxes which their indexes has been saved in the current clicking indexes
-      console.log('current column divs',currentClickingDirection[currentColumnIndex])
-      
-      console.log('current indexes to compare:',currentIndexesToCompare)
-      
-      const logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle =()=>{
-       for (let index = 0; index < currentIndexesToCompare.length; index++) {
-       
-      let boxesToRemoveStyle = currentClickingDirection[currentColumnIndex].find( box => box.id === currentIndexesToCompare[index])
-      
-      
+      if(!wordFound){      
+      const logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle =()=>{
+       for (let index = 0; index < currentIndexesToCompareArray.length; index++) {
+      let boxesToRemoveStyle = currentClickingDirection[currentColumnIndex].find( box => box.id === currentIndexesToCompareArray[index])
+  
         boxesToRemoveStyle?.classList.remove('clicked-style')
         boxesToRemoveStyle?.classList.add('box')
-      
-       
-      
-       
-      
+
       }  
-      
       return Promise.resolve()
       }
-      logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle()
-      logicToLoopThroughCurrentWordBoxesNRemoveTheClickedStyle().then(()=>{
-        currentIndexesToCompare = [];currentIndexToCompare =[];currentWordToCompare = [] ;
-        setTimeout(() => {
+      logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle()
+      logicToLoopThroughCurrentClickedBoxesAndRemoveTheClickedStyle().then(()=>{
+        currentIndexesToCompareArray = [];currentIndexToCompare =[];currentWordToCompareArray = [] ;
+        let allow_pointer_events_for_boxes =  setTimeout(() => {
           boxesArray.forEach(box =>{
-        
           box.style.pointerEvents = 'all'
         }) 
         }, 1000);
       })
+      } 
+      },10000)
       
-      }
-      
-        
-        },4000)
-      
-
-
-    let currentColumnIndexing = currentColumnIndex
-    // console.log('Current Row box:',currentClickingDirection[currentColumnIndex][currentIndexInColumn]);
-    // console.log('Current Row box id:',currentClickingDirection[currentColumnIndex][currentIndexInColumn].id);
-    let existsInColumn = currentClickingDirection[currentColumnIndex].some( box => box.id === boxesArray[currentIndexToCompare].id)
    
-  //   alert(boxesArray[currentIndexToCompare].id === currentClickingDirection[currentColumnIndex][currentIndexInColumn].id ? 'comparison successful' : 'comparison wrong')
     
-  //  alert(sub === -15?'direction is col':sub)
-  
-   console.log(existsInColumn)
-    console.log('exist in col status',existsInColumn)
-    console.log('Current Index in Col:', currentIndexInColumn);
-  
-   
-    let currentRowIndexArray = rows[currentColumnIndex];
-    let currentIndexToCompareValue = parseInt(currentIndexToCompare[0]);
-  
-    console.log('current Col',currentColumnIndex)
-    
-    boxesArray.forEach(box =>{
-
+    let dissallow_pointer_events_for_boxes = boxesArray.forEach(box =>{
       box.style.pointerEvents = 'none'
     })
-    currentClickingDirection[currentColumnIndex].forEach(box =>{
-
+    let allow_pointer_events_for_boxes_in_current_clicking_direction = currentClickingDirection[currentColumnIndex].forEach(box =>{
       box.style.pointerEvents = 'all'
     })
   
-    if(currentIndexesToCompare[currentIndexesToCompare.length-2]-currentIndexToCompare[0] !== -15){
-  
-  
-       alert('wahala don they o,you clicked on a different box from your current column')
+    if(currentIndexesToCompareArray[currentIndexesToCompareArray.length-2]-currentIndexToCompare[0] !== -15){
+  alert('wahala don they o,you clicked on a different box from your current column')
     }
    
+}}}
 
-  
-
-
-
-
-}
-
-
-
-
-
-
-
-
-}
-}
-
-document.addEventListener('click',(box)=>{
-
+let render_trackClickedBox_function = document.addEventListener('click',(box)=>{
 trackClickedBox(box.target)
 })
